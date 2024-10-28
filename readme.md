@@ -52,10 +52,11 @@ your root project
 │   └   // your others route file
 └───config
 │   │   exampleConfig.js
-│   └   // your configuration file
+│   └   // your others configuration file
 └───utils
     └───validators
-        └   // your validation file
+        │   exampleValidator.js
+        └   // your others validation file
 ```
 
 5. write your code
