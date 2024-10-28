@@ -18,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/mzkki/study-group-api/issues"
   },
-  "homepage": "https://github.com/mzkki/study-group-api#readme"
+  "homepage": "https://github.com/mzkki/study-group-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "express-validator": "^7.2.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
