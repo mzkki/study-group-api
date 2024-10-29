@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/api', router);
 
+app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {

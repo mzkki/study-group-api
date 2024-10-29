@@ -6,8 +6,9 @@ const errorHandler = (err, req, res, next) => {
   });
 }
 
-const notFoundHandler = (err, req, res, next) => {
+const notFoundHandler = (req, res) => {
   res.status(404).json({
+    success: false,
     message: 'Not Found'
   });
 }
