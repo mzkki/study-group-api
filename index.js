@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./routes');
+const { notFoundHandler, errorHandler } = require('./utils/responseHandler');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,6 +17,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', router);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

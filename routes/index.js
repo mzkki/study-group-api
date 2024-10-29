@@ -1,11 +1,12 @@
 const express = require('express');
 const notesController = require('../controllers/NotesController');
+const { validateNote } = require('../utils/validator/notes');
 
 const router = express.Router();
 
 router.get('/notes', notesController.getNotes);
 router.get('/notes/:id', notesController.getNoteById);
-router.post('/notes');
+router.post('/notes', validateNote, notesController.createNote);
 router.put('/notes/:id');
 router.delete('/notes/:id');
 
