@@ -9,29 +9,23 @@ npm init -y
 2. Install express js and other dependecies by running the following command in the terminal
 
 ```bash
-npm install express body-parser mysql express-validator dotenv --save
+npm install express body-parser mysql2 express-validator dotenv --save
 npm install nodemon --save-dev
 ```
 
 3. configure mysql database in `config/db.js` file
 
 ```javascript
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
-let db = mysql.createConnection({
+let db = mysql.createPool({
   host: 'your_host',
   user: 'your_username',
   password: 'your_password',
   database: 'your_database',
 });
 
-db.connect(function (error) {
-  if (!!error) {
-    console.log(error);
-  } else {
-    console.log('Koneksi Berhasil!');
-  }
-});
+module.exports = db;
 ```
 
 4. make a structural directory
