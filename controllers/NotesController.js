@@ -72,10 +72,18 @@ const updateNote = async (req, res, next) => {
   }
 
   try {
-    await notesModel.updateNote({
+    const [result] = await notesModel.updateNote({
       title: req.body.title,
       description: req.body.description
     }, req.params.id);
+
+    if (result.affectedRows === 0) {
+      res.status(404).json({
+        success: false,
+        message: 'Note not found'
+      });
+    }
+
     res.status(200).json({
       success: true,
       message: 'Note updated successfully',
@@ -84,7 +92,23 @@ const updateNote = async (req, res, next) => {
     next(err)
   }
 }
-const deleteNote = () => { }
+const deleteNote = async (req, res, next) => {
+  try {
+    const [result] = await notesModel.deleteNote(req.params.id);
+    if (result.affectedRows === 0) {
+      res.status(404).json({
+        success: false,
+        message: 'Note not found'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Note deleted successfully',
+    });
+  } catch (err) {
+    next(err)
+  }
+}
 
 module.exports = {
   getNotes,

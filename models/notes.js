@@ -16,7 +16,10 @@ const updateNote = (payload, noteId) => {
   const query = `UPDATE notes SET title = '${payload.title}', description = '${payload.description}' WHERE id = ${noteId}`;
   return db.execute(query);
 }
-const deleteNote = () => { }
+const deleteNote = (noteId) => {
+  const query = `DELETE FROM notes WHERE id = ${noteId}`;
+  return db.execute(query);
+}
 
 module.exports = {
   getNotes,
