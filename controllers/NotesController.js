@@ -60,7 +60,30 @@ const createNote = async (req, res, next) => {
     next(err)
   }
 }
-const updateNote = () => { }
+const updateNote = async (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(422).json({
+      success: false,
+      message: 'Your request doesn\'t meet the requirements',
+      errors: errors.array()
+    })
+  }
+
+  try {
+    await notesModel.updateNote({
+      title: req.body.title,
+      description: req.body.description
+    }, req.params.id);
+    res.status(200).json({
+      success: true,
+      message: 'Note updated successfully',
+    });
+  } catch (err) {
+    next(err)
+  }
+}
 const deleteNote = () => { }
 
 module.exports = {

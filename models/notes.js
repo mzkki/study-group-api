@@ -12,7 +12,10 @@ const createNote = (payload) => {
   const query = `INSERT INTO notes (title, description) VALUES ('${payload.title}', '${payload.description}')`;
   return db.execute(query);
 }
-const updateNote = () => { }
+const updateNote = (payload, noteId) => {
+  const query = `UPDATE notes SET title = '${payload.title}', description = '${payload.description}' WHERE id = ${noteId}`;
+  return db.execute(query);
+}
 const deleteNote = () => { }
 
 module.exports = {
