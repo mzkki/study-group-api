@@ -9,8 +9,14 @@ npm init -y
 2. Install express js and other dependecies by running the following command in the terminal
 
 ```bash
-npm install express body-parser mysql2 express-validator dotenv --save
+npm install express body-parser mysql2 express-validator dotenv bcryptjs jsonwebtoken --save
 npm install nodemon --save-dev
+```
+
+3. generate your secret key for jwt token by running the following command in the terminal
+
+```bash
+node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
 ```
 
 3. configure mysql database in `config/db.js` file
