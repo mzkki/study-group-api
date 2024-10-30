@@ -1,5 +1,5 @@
 const notesModel = require('../models/notes');
-const { validationResult } = require('express-validator');
+const validateNote = require('../utils/validator/validateNote');
 
 const getNotes = async (req, res, next) => {
   try {
@@ -32,15 +32,7 @@ const getNoteById = async (req, res, next) => {
   }
 }
 const createNote = async (req, res, next) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(422).json({
-      success: false,
-      message: 'Your request doesn\'t meet the requirements',
-      errors: errors.array()
-    })
-  }
+  validateNote(req, res);
 
   try {
     const [result] = await notesModel.createNote({
@@ -61,15 +53,7 @@ const createNote = async (req, res, next) => {
   }
 }
 const updateNote = async (req, res, next) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(422).json({
-      success: false,
-      message: 'Your request doesn\'t meet the requirements',
-      errors: errors.array()
-    })
-  }
+  validateNote(req, res);
 
   try {
     const [result] = await notesModel.updateNote({
