@@ -1,5 +1,5 @@
 const notesModel = require('../models/notes');
-const validateNote = require('../utils/validator/validateNote');
+const validateRequest = require('../utils/validator');
 
 const getNotes = async (req, res, next) => {
   try {
@@ -32,7 +32,7 @@ const getNoteById = async (req, res, next) => {
   }
 }
 const createNote = async (req, res, next) => {
-  validateNote(req, res);
+  if (!validateRequest(req, res)) return;
 
   try {
     const [result] = await notesModel.createNote({
@@ -53,7 +53,7 @@ const createNote = async (req, res, next) => {
   }
 }
 const updateNote = async (req, res, next) => {
-  validateNote(req, res);
+  if (!validateRequest(req, res)) return;
 
   try {
     const [result] = await notesModel.updateNote({

@@ -1,20 +1,14 @@
 const express = require('express');
 const notesController = require('../controllers/NotesController');
+const authController = require('../controllers/AuthController');
 const { noteValidation } = require('../utils/validator/notes');
+const { loginValidation, registerValidation } = require('../utils/validator/users');
 
 const router = express.Router();
 
 // auth
-router.post('/login', (req, res) => {
-  res.json * ({
-    message: 'Login route'
-  });
-});
-router.post('/register', (req, res) => {
-  res.json({
-    message: 'Register route'
-  });
-});
+router.post('/login', loginValidation, authController.login);
+router.post('/register', registerValidation, authController.register);
 
 // notes
 router.get('/notes', notesController.getNotes);

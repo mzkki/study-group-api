@@ -5,4 +5,4 @@ const noteValidation = [
   body('description').notEmpty().withMessage('Description is required')
 ];
 
-module.exports = { noteValidation }
+module.exports = { noteValidation } 

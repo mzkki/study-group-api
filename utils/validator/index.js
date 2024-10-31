@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 
-const validateNote = (payload, res) => {
-  const errors = validationResult(payload);
+const validateNote = (req, res) => {
+  const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     res.status(422).json({
@@ -9,7 +9,9 @@ const validateNote = (payload, res) => {
       message: 'Your request doesn\'t meet the requirements',
       errors: errors.array()
     })
+    return false;
   }
+  return true;
 }
 
 module.exports = validateNote
