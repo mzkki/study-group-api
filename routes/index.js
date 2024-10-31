@@ -13,9 +13,9 @@ router.post('/register', registerValidation, authController.register);
 
 // notes
 router.get('/notes', verifyToken, notesController.getNotes);
-router.get('/notes/:id', notesController.getNoteById);
-router.post('/notes', noteValidation, notesController.createNote);
-router.put('/notes/:id', noteValidation, notesController.updateNote);
-router.delete('/notes/:id', notesController.deleteNote);
+router.get('/notes/:id', verifyToken, notesController.getNoteById);
+router.post('/notes', verifyToken, noteValidation, notesController.createNote);
+router.put('/notes/:id', verifyToken, noteValidation, notesController.updateNote);
+router.delete('/notes/:id', verifyToken, notesController.deleteNote);
 
 module.exports = router;
