@@ -37,11 +37,11 @@ const login = async (req, res, next) => {
         message: 'Login failed'
       });
     }
-    const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+    const isValidPassword = await bcrypt.compare(req.body.password, user[0].password);
     if (!isValidPassword) {
       return res.status(401).json({
         success: false,
-        message: 'Login failed'
+        message: 'Login failed, email or password is wrong'
       });
     }
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '30m' });
